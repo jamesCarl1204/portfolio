@@ -24,7 +24,7 @@
 .identity { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
 .avatar {
   width: 64px; height: 64px; border-radius: 16px; object-fit: cover;
-  border: 1px solid var(--mono-700); filter: grayscale(1);
+  border: 1px solid var(--mono-700);
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
 }
 .nameRow { display: flex; align-items: center; gap: 8px; }
