@@ -26,7 +26,7 @@ export default function Profile() {
 
           <div className={styles.identity}>
             <img
-              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250"
+              src="projects/pfp.png"
               alt={`${profile.name} profile`}
               className={styles.avatar}
               onError={(e) => { e.currentTarget.src = 'https://placehold.co/100x100/111827/ffffff?text=AM' }}

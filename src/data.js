@@ -24,7 +24,7 @@ export const projects = [
     title: 'Qr Code-based attendance monitoring system',
     description:'A QR Code Attendance Monitoring System that automates student attendance tracking, sends real-time email notifications to parents, and provides an AI chatbot to assist teachers with attendance-related tasks.',
 
-    url: 'https://analytics.alexmorgan.dev',
+    url: 'https://rmc-attendance-system.vercel.app/',
     laptopImage: '/projects/image1laptop.png',
     phoneImage: '/projects/image1phone.png',
     tech: ['react', 'node.js', 'express', 'mysql'],
