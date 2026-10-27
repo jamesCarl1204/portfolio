@@ -1,4 +1,4 @@
-import { Layers, Send, Mail, ArrowUpRight, Github, Facebook, BadgeCheck, Code2, Atom, Server, Palette, FileCode2 } from 'lucide-react'
+import { Layers, Send, Mail, ArrowUpRight, Github, Facebook, BadgeCheck } from 'lucide-react'
 import { profile, stack } from '../data.js'
 import styles from './Profile.module.css'
 
@@ -8,7 +8,15 @@ const TikTok = ({ className }) => (
   </svg>
 )
 
-const stackIcons = { HTML: FileCode2, CSS: Palette, JavaScript: Code2, React: Atom, 'Node.js': Server, Express: Server }
+const stackLogos = {
+  HTML: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg',
+  CSS: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg',
+  JavaScript: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg',
+  React: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
+  'Node.js': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg',
+  Express: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg',
+  Mysql: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg',
+}
 
 export default function Profile() {
   return (
@@ -54,10 +62,10 @@ export default function Profile() {
             </div>
             <div className={styles.chips}>
               {stack.map((s) => {
-                const Icon = stackIcons[s] || Code2
+                const logo = stackLogos[s]
                 return (
                   <span key={s} className={styles.chip}>
-                    <Icon className={styles.chipIcon} /> {s}
+                    {logo && <img src={logo} alt="" aria-hidden="true" className={styles.chipIcon} />} {s}
                   </span>
                 )
               })}
