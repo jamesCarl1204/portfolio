@@ -1,11 +1,10 @@
 import { useState } from 'react'
-import { Layers, Laptop, Smartphone, ChevronLeft, ChevronRight, Sparkles, ExternalLink, Github } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Sparkles, ExternalLink, Github } from 'lucide-react'
 import { projects } from '../data.js'
 import styles from './Projects.module.css'
 
 export default function Projects({ now }) {
   const [slide, setSlide] = useState(0)
-  const [mode, setMode] = useState('both') // 'laptop' | 'phone' | 'both'
   const [tilt, setTilt] = useState({ x: 0, y: 0 })
 
   const laptopClock = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' })
@@ -20,9 +19,6 @@ export default function Projects({ now }) {
     setTilt({ x: (-y / r.height) * 12, y: (x / r.width) * 12 })
   }
 
-  const modeClass = (m, extra = '') =>
-    `${styles.modeBtn} ${mode === m ? styles.modeBtnActive : ''} ${extra}`
-
   return (
     <section id="projects" className={styles.section}>
       <div className={styles.header}>
@@ -35,18 +31,6 @@ export default function Projects({ now }) {
         </div>
 
         <div className={styles.controls}>
-          <div className={styles.modes}>
-            <button onClick={() => setMode('laptop')} className={modeClass('laptop')}>
-              <Laptop className={styles.icon14} /> Laptop
-            </button>
-            <button onClick={() => setMode('phone')} className={modeClass('phone')}>
-              <Smartphone className={styles.icon14} /> Mobile
-            </button>
-            <button onClick={() => setMode('both')} className={modeClass('both', styles.dualBtn)}>
-              <Layers className={styles.icon14} /> Dual
-            </button>
-          </div>
-
           <div className={styles.slideControls}>
             <span className={styles.counter}>0{slide + 1} / 0{projects.length}</span>
             <button onClick={prev} className={styles.arrowBtn} aria-label="Previous project"><ChevronLeft /></button>
@@ -85,13 +69,12 @@ export default function Projects({ now }) {
           </div>
         </div>
 
-        {/* Devices */}
+        {/* Laptop */}
         <div className={styles.stage} onMouseMove={onMove} onMouseLeave={() => setTilt({ x: 0, y: 0 })}>
           <div className={styles.glow} />
 
-          {/* Laptop */}
           <div
-            className={`${styles.device} ${styles.laptop} ${mode === 'phone' ? styles.hidden : ''}`}
+            className={`${styles.device} ${styles.laptop}`}
             style={{ transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)` }}
           >
             <div className={styles.laptopBezel}>
@@ -113,20 +96,6 @@ export default function Projects({ now }) {
               </div>
             </div>
             <div className={styles.laptopBase}><div className={styles.laptopNotch} /></div>
-          </div>
-
-          {/* Phone */}
-          <div
-            className={`${styles.device} ${styles.phone} ${mode === 'both' ? styles.phoneFloating : styles.phoneSolo} ${mode === 'laptop' ? styles.hidden : ''}`}
-            style={{ transform: `rotateX(${tilt.x * 1.2}deg) rotateY(${tilt.y * 1.2}deg) translateZ(${tilt.x || tilt.y ? 30 : 0}px)` }}
-          >
-            <div className={styles.phoneChassis}>
-              <div className={styles.phoneGlare} />
-              <div className={styles.island}><div className={styles.lens} /></div>
-              <div className={styles.phoneScreen}>
-                <img src={p.phoneImage} alt={`${p.title} mobile view`} className={styles.shot} />
-              </div>
-            </div>
           </div>
         </div>
       </div>
